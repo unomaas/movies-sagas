@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, MenuItem, TextField } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 //#endregion ⬆⬆ Document setup above. 
 
@@ -39,7 +38,7 @@ export default function AddMovie() {
     // ⬇ Sending newPlant to our reducer: 
     dispatch({ type: 'ADD_MOVIE', payload: movie }); // movie is already an object, defined above. 
     // ⬇ Send user back to home:
-    // history.push('/');
+    history.push('/');
   } // End handleSubmit
 
   /** ⬇ handleCancel:
@@ -65,7 +64,6 @@ export default function AddMovie() {
             name="title"
             onChange={event => handleChange('title', event.target.value)}
             defaultValue=""
-            // value={movie.title}
             required
             helperText="Required"
           /> <br />
@@ -75,7 +73,6 @@ export default function AddMovie() {
             name="poster"
             onChange={event => handleChange('poster', event.target.value)}
             defaultValue=""
-            // value={movie.poster}
             required
             helperText="Required"
           /> <br />
@@ -85,7 +82,6 @@ export default function AddMovie() {
             name="description"
             onChange={event => handleChange('description', event.target.value)}
             defaultValue=""
-            // value={movie.description}
             required
             helperText="Required"
           /> <br />
@@ -93,9 +89,8 @@ export default function AddMovie() {
           <label htmlFor="genre">Genre: </label>
           <TextField
             name="genre"
-            onChange={event => handleChange('genre', event.target.value)}
+            onChange={event => handleChange('genre_id', event.target.value)}
             defaultValue=""
-            // value={movie.description}
             select
             required
             helperText="Required"
