@@ -33,14 +33,13 @@ export default function AddMovie() {
    * When clicked, this will submit the new movie to the DB and send the user back to the home page. 
    */
   const handleSubmit = event => {
+    console.log('In handleSubmit, movie:', movie);
     // ⬇ Don't refresh until submit:
     event.preventDefault();
     // ⬇ Sending newPlant to our reducer: 
     dispatch({ type: 'ADD_MOVIE', payload: movie }); // movie is already an object, defined above. 
-    // ⬇ Clear inputs after submit:
-    setMovie({ title: '', poster: '', clade: '', order: '', family: '', subfamily: '', genus: '' });
     // ⬇ Send user back to home:
-    history.push('/');
+    // history.push('/');
   } // End handleSubmit
 
   /** ⬇ handleCancel:
@@ -59,39 +58,61 @@ export default function AddMovie() {
       <h2>Add a New Movie</h2>
 
       <div className="AddMovie-form">
+
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Movie Title: </label>
           <TextField
             name="title"
             onChange={event => handleChange('title', event.target.value)}
             defaultValue=""
-            value={movie.title}
+            // value={movie.title}
             required
             helperText="Required"
           /> <br />
 
-          <label htmlFor="image">Image URL: </label>
+          <label htmlFor="poster">Image URL: </label>
           <TextField
-            name="image"
+            name="poster"
             onChange={event => handleChange('poster', event.target.value)}
             defaultValue=""
-            value={movie.title}
+            // value={movie.poster}
             required
             helperText="Required"
           /> <br />
 
+          <label htmlFor="description">Description: </label>
           <TextField
-            required
-            select
+            name="description"
+            onChange={event => handleChange('description', event.target.value)}
             defaultValue=""
-            onChange={event => setFeeling(event.target.value)}
+            // value={movie.description}
+            required
+            helperText="Required"
+          /> <br />
+
+          <label htmlFor="genre">Genre: </label>
+          <TextField
+            name="genre"
+            onChange={event => handleChange('genre', event.target.value)}
+            defaultValue=""
+            // value={movie.description}
+            select
+            required
             helperText="Required"
           >
-            <MenuItem value='1'>1</MenuItem>
-            <MenuItem value='2'>2</MenuItem>
-            <MenuItem value='3'>3</MenuItem>
-            <MenuItem value='4'>4</MenuItem>
-            <MenuItem value='5'>5</MenuItem>
+            <MenuItem value='1'>Adventure</MenuItem>
+            <MenuItem value='2'>Animated</MenuItem>
+            <MenuItem value='3'>Biographical</MenuItem>
+            <MenuItem value='4'>Comedy</MenuItem>
+            <MenuItem value='5'>Disaster</MenuItem>
+            <MenuItem value='6'>Drama</MenuItem>
+            <MenuItem value='7'>Epic</MenuItem>
+            <MenuItem value='8'>Fantasy</MenuItem>
+            <MenuItem value='9'>Musical</MenuItem>
+            <MenuItem value='10'>Romantic</MenuItem>
+            <MenuItem value='11'>Science Fiction</MenuItem>
+            <MenuItem value='12'>Space-Opera</MenuItem>
+            <MenuItem value='13'>Superhero</MenuItem>
           </TextField> <br />
 
           <Button

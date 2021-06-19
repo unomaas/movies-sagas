@@ -30,6 +30,7 @@ import './fonts/OpenDyslexia/opendyslexic-bolditalic-webfont.woff2'
 // ⬇ rootSaga generator function:
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+  yield takeEvery('ADD_MOVIE', addMovie)
 } // End rootSaga
 
 // ⬇ fetAllMovies Saga:
@@ -46,6 +47,20 @@ function* fetchAllMovies() {
     console.error('Error in GET movies:', error);
   } // End catch
 } // End fetchAllMovies Saga
+
+function* addMovie(action) {
+  console.log('In addMovie Saga, action:', action.payload);
+  try {
+    // ⬇ Sending movie to add to server:
+    yield axios.post('api/movie', action.payload);
+    // ⬇ GET to refresh data:
+    yield put({ type: 'FETCH_MOVIES' });
+  } // End try
+  catch (error) {
+    console.error('Error with /api/movie:', error)
+  } // End catch
+} // End addMovie
+
 //#endregion ⬆⬆ All Saga functions above. 
 
 
