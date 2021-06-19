@@ -11,10 +11,11 @@ export default function Header() {
         <nav>
           <ul className="Header-nav">
             <li>
-              <Link className="link" to='/'>Home</Link>&nbsp;
+              <Link className="link" to='/'>Home</Link>
+              {/* &nbsp; */}
             </li>
             <li>
-              <Link className="link" to='/favorites'>Add New Movie</Link>&nbsp;
+              <Link className="link" to='/addmovie'>Add New Movie</Link>
             </li>
           </ul>
         </nav>

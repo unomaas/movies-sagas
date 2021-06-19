@@ -26,11 +26,11 @@
 }
 
 .header-main {
-  padding-right: 10px;
+  padding-right: 13px;
 }
 
 .Header-nav {
-  display: inline-flex;
+  /* display: inline-flex; */
   list-style-type: none;
   margin: 0;
   padding-bottom: 5px;
@@ -39,5 +39,5 @@
 .link {
   color: #FFF;
 } .link:hover {
-   color: #00F
+   color: #5f00b2
 }
