@@ -14,49 +14,61 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 // ⬇ Server Calls Setup:
 import axios from 'axios';
+// ⬇ Font setup:
+import './fonts/OpenDyslexia/opendyslexic-regular-webfont.woff'
+import './fonts/OpenDyslexia/opendyslexic-regular-webfont.woff2'
+import './fonts/OpenDyslexia/opendyslexic-bold-webfont.woff'
+import './fonts/OpenDyslexia/opendyslexic-bold-webfont.woff2'
+import './fonts/OpenDyslexia/opendyslexic-italic-webfont.woff'
+import './fonts/OpenDyslexia/opendyslexic-italic-webfont.woff2'
+import './fonts/OpenDyslexia/opendyslexic-bolditalic-webfont.woff'
+import './fonts/OpenDyslexia/opendyslexic-bolditalic-webfont.woff2'
 //#endregion ⬆⬆ All document setup above.
 
 
 //#region ⬇⬇ All Saga functions, below:
-// Create the rootSaga generator function
+// ⬇ rootSaga generator function:
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-}
+} // End rootSaga
 
+// ⬇ fetAllMovies Saga:
 function* fetchAllMovies() {
-  // get all movies from the DB
+  console.log('In fetchAllMovies Saga');
   try {
+    // ⬇ Calling to server to load data:
     const movies = yield axios.get('/api/movie');
-    console.log('get all:', movies.data);
+    console.log('In axios.get, movies:', movies.data);
+    // ⬇ Sending the data from the server to the reducer to hold:
     yield put({ type: 'SET_MOVIES', payload: movies.data });
-
-  } catch {
-    console.log('get all error');
-  }
-}
+  } // End try
+  catch {
+    console.error('Error in GET movies:', error);
+  } // End catch
+} // End fetchAllMovies Saga
 //#endregion ⬆⬆ All Saga functions above. 
 
 
 //#region ⬇⬇ All Reducer functions, below:
-// Used to store movies returned from the server
+// ⬇ movies Reducer:
 const movies = (state = [], action) => {
   switch (action.type) {
     case 'SET_MOVIES':
       return action.payload;
     default:
       return state;
-  }
-}
+  } // End switch
+} // End movies Reducer
 
-// Used to store the movie genres
+// ⬇ genres Reducer:
 const genres = (state = [], action) => {
   switch (action.type) {
     case 'SET_GENRES':
       return action.payload;
     default:
       return state;
-  }
-}
+  } // End switch
+} // End genres Reducer
 //#endregion ⬆⬆ All Reducer functions above. 
 
 
@@ -66,18 +78,14 @@ const sagaMiddleware = createSagaMiddleware();
 
 // ⬇ Create one store to rule them all:
 const storeInstance = createStore(
-  combineReducers({
-    movies, genres,
-  }),
-  // Add sagaMiddleware to our store
+  combineReducers({ movies, genres }),
   applyMiddleware(sagaMiddleware, logger),
-);
+); // End store
 
 // ⬇ Pass rootSaga into our sagaMiddleware:
 sagaMiddleware.run(rootSaga);
 
 // ⬇ Rendering:
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={storeInstance}>
@@ -85,5 +93,5 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+); // End render
 //#endregion ⬆⬆ All Store & Middleware setup above.
