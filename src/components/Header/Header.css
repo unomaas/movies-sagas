@@ -1,0 +1,43 @@
+.header {
+  background-color: #1266F1;
+  color: white;
+  min-width: 300px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.header-title {
+  font-size: 1.6em;
+}
+
+.header-subtitle {
+  font-size: .8em;
+}
+
+.header-title,
+.header-subtitle {
+  display: inline;
+}
+
+.header-image {
+  padding: 13px;
+}
+
+.header-main {
+  padding-right: 10px;
+}
+
+.Header-nav {
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.link {
+  color: #FFF;
+} .link:hover {
+   color: #00F
+}
