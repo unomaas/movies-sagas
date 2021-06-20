@@ -27,10 +27,12 @@ import './fonts/OpenDyslexia/opendyslexic-bolditalic-webfont.woff2'
 
 
 //#region ⬇⬇ All Saga functions, below:
-// ⬇ rootSaga generator function:
+// ⬇ rootSaga generator:
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-  yield takeEvery('ADD_MOVIE', addMovie)
+  yield takeEvery('ADD_MOVIE', addMovie);
+  yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie);
+  // yield takeEvery('SET_MOVIE_DETAIL', editMovie)
 } // End rootSaga
 
 // ⬇ fetAllMovies Saga:
@@ -48,6 +50,7 @@ function* fetchAllMovies() {
   } // End catch
 } // End fetchAllMovies Saga
 
+// ⬇ addMovie Saga:
 function* addMovie(action) {
   console.log('In addMovie Saga, action:', action.payload);
   try {
@@ -61,6 +64,23 @@ function* addMovie(action) {
   } // End catch
 } // End addMovie
 
+function* fetchSingleMovie(action) {
+  console.log('In fetchSingleMovie Saga, action:', action.payload.title);
+  // ⬇ Declaring variable to hold movieId:
+  const movieId = action.payload.id;
+  console.log('movieId is:', movieId);
+  try {
+    // ⬇ Sending movieId to server:
+    const response = yield axios.get(`/api/movie/${movieId}`);
+    // ⬇ Logging the response:
+    console.log('In fetchSingleMovie axios.get, response:', response.data);
+    // ⬇ Sending the response to our reducer to hold:
+    yield put({ type: 'SET_MOVIE_DETAIL', payload: response.data })
+  } // End try
+  catch (error) {
+    console.error('In fetchSingleMovie Saga, error:', error);
+  } // End catch
+} // End fetchSingleMovie
 //#endregion ⬆⬆ All Saga functions above. 
 
 
@@ -84,6 +104,17 @@ const genres = (state = [], action) => {
       return state;
   } // End switch
 } // End genres Reducer
+
+// ⬇ movieDetail Reducer:
+const movieDetail = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_MOVIE_DETAIL':
+      return action.payload;
+    default:
+      return state;
+  } // End switch
+} // End movieDetail Reducer
+
 //#endregion ⬆⬆ All Reducer functions above. 
 
 
@@ -93,7 +124,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 // ⬇ Create one store to rule them all:
 const storeInstance = createStore(
-  combineReducers({ movies, genres }),
+  combineReducers({ movies, genres, movieDetail }),
   applyMiddleware(sagaMiddleware, logger),
 ); // End store
 

@@ -54,7 +54,7 @@ export default function AddMovie() {
   return (
     <div className="AddMovie-wrapper">
 
-      <h2>Add a New Movie</h2>
+      <h1>Add a New Movie</h1>
 
       <div className="AddMovie-form">
 
@@ -86,9 +86,9 @@ export default function AddMovie() {
             helperText="Required"
           /> <br />
 
-          <label htmlFor="genre">Genre: </label>
+          <label htmlFor="genre_id">Genre: </label>
           <TextField
-            name="genre"
+            name="genre_id"
             onChange={event => handleChange('genre_id', event.target.value)}
             defaultValue=""
             select

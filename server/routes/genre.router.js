@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
   console.log('In /genre GET');
   // ⬇ Declaring SQL commands to send to DB: 
   const query = `SELECT * from "genres" ORDER BY "name" ASC;`;
+  // Might have to figure out AGG to pull genre data. 
   pool.query(query)
     .then(result => {
       console.log('In /genre GET, result:', result.rows);

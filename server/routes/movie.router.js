@@ -26,6 +26,30 @@ router.get('/', (req, res) => {
     }); // End .catch
 }); // End GET
 
+router.get('/:id', (req, res) => {
+  console.log('In api/movie/:id GET');
+  // ⬇ Declaring SQL commands to send to DB: 
+  const query = `
+    SELECT ARRAY_AGG ("genres".name), "movies".* FROM "movies"
+    JOIN "movies_genres" ON "movies_genres".movie_id = "movies".id
+    JOIN "genres" ON "movies_genres".genre_id = "genres".id
+    WHERE "movies".id = $1
+    GROUP BY "movies".id;
+  `;
+  const movieId = req.params.id;
+  // ⬇ Sending query to DB:
+  pool.query(query, [movieId])
+    .then(result => {
+      console.log('In /movie/:id GET, result:', result.rows);
+      // ⬇ Sends back the results in an object, we always want rows:
+      res.send(result.rows);
+    }) // End .then
+    .catch(error => {
+      console.error('Error in /movie/:id GET:', error);
+      res.sendStatus(500)
+    }); // End .catch
+}); // End GET
+
 /** ⬇ POST /api/movie:
  * Router function to handle the POST part of the server-side logic.  Will send SQL query to add new entries to the DB.
  */
