@@ -64,6 +64,7 @@ function* addMovie(action) {
   } // End catch
 } // End addMovie
 
+// ⬇ fetchSingleMovie Saga:
 function* fetchSingleMovie(action) {
   console.log('In fetchSingleMovie Saga, action:', action.payload.title);
   // ⬇ Declaring variable to hold movieId:
@@ -73,7 +74,7 @@ function* fetchSingleMovie(action) {
     // ⬇ Sending movieId to server:
     const response = yield axios.get(`/api/movie/${movieId}`);
     // ⬇ Logging the response:
-    console.log('In fetchSingleMovie axios.get, response:', response.data);
+    console.log('In fetchSingleMovie GET, response:', response.data);
     // ⬇ Sending the response to our reducer to hold:
     yield put({ type: 'SET_MOVIE_DETAIL', payload: response.data })
   } // End try

@@ -26,6 +26,9 @@ router.get('/', (req, res) => {
     }); // End .catch
 }); // End GET
 
+/** ⬇ GET /api/movie/:id:
+ * Router function to handle the GET part of the server-side logic.  Will send SQL query to pull JUST ONE of the entries from the DB to update on the DOM for detailed view.
+ */
 router.get('/:id', (req, res) => {
   console.log('In api/movie/:id GET');
   // ⬇ Declaring SQL commands to send to DB: 

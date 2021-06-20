@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //#endregion ⬆⬆ Document setup above. 
 
 
-function MovieList() {
+export default function MovieList() {
   //#region ⬇⬇ All state variables below:
   const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
@@ -19,6 +19,7 @@ function MovieList() {
   //#endregion ⬆⬆ All state variables above. 
 
 
+  // ⬇ Rendering:
   return (
     <main>
 
@@ -33,7 +34,3 @@ function MovieList() {
     </main>
   ) // End return
 } // End MovieList
-
-
-export default MovieList;
-

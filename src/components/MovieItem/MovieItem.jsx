@@ -1,6 +1,9 @@
+//#region ⬇⬇ Document setup below: 
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+//#endregion ⬆⬆ Document setup above. 
+
 
 export default function MovieItem({ movie }) {
   //#region ⬇⬇ All state variables below:
@@ -10,6 +13,9 @@ export default function MovieItem({ movie }) {
 
 
   //#region ⬇⬇ Event handlers below:
+  /** ⬇ handleDetail:
+   * When clicked, this will send the user to the details view page. 
+   */
   const handleDetail = () => {
     console.log('In handleDetail, movie title:', movie?.title);
     // ⬇ Dispatch to the detail reducer:
@@ -22,22 +28,18 @@ export default function MovieItem({ movie }) {
 
   // ⬇ Rendering:
   return (
-    <div>
-      <div className="movies-item" key={movie?.id} onClick={handleDetail}>
+    <div className="movies-item" key={movie?.id} onClick={handleDetail}>
 
-        <div className="movies-title">
-          <p>{movie?.title}</p>
-        </div>
-
-        <img
-          className="movies-image"
-          src={movie?.poster}
-          alt={movie?.title}
-        />
-
+      <div className="movies-title">
+        <p>{movie?.title}</p>
       </div>
+
+      <img
+        className="movies-image"
+        src={movie?.poster}
+        alt={movie?.title}
+      />
+
     </div>
   ) // End return
 } // End MovieItem
-
-
