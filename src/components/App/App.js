@@ -4,7 +4,7 @@ import './App.css';
 import MovieList from '../MovieList/MovieList'
 import Header from '../Header/Header';
 import AddMovie from '../AddMovie/AddMovie';
-import MovieDetail from '../MovieItem/MovieItem';
+import MovieDetail from '../MovieDetail/MovieDetail';
 // ⬇ Dependent imports:
 import { HashRouter as Router, Route } from 'react-router-dom';
 //#endregion ⬆⬆ All document setup above.
@@ -15,14 +15,13 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <MovieDetail />
 
         <Route path="/" exact>
           <MovieList />
         </Route>
 
         {/* Details page */}
-        <Route path="/detail" children={<MovieDetail />} />
+        <Route path="/detail/:id" children={<MovieDetail />} />
 
         {/* Add Movie page */}
         <Route path="/addmovie">
