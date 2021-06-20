@@ -11,11 +11,11 @@ export default function MovieItem({ movie }) {
 
   //#region ⬇⬇ Event handlers below:
   const handleDetail = () => {
-    console.log('In handleDetail, movie title:', movie.title);
+    console.log('In handleDetail, movie title:', movie?.title);
     // ⬇ Dispatch to the detail reducer:
-    dispatch({ type: 'FETCH_MOVIE_DETAIL', payload: movie });
+    dispatch({ type: 'FETCH_SINGLE_MOVIE', payload: movie });
     // ⬇ Navigate user to detailed view: 
-    history.push('/detail');
+    history.push(`/detail/${movie.id}`);
   } // End handleDetail
   //#endregion ⬆⬆ Event handles above. 
 

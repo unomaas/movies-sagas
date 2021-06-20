@@ -15,13 +15,14 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+        <MovieDetail />
 
         <Route path="/" exact>
           <MovieList />
         </Route>
 
         {/* Details page */}
-        <Route path="/detail:id" children={<MovieDetail />} />
+        <Route path="/detail" children={<MovieDetail />} />
 
         {/* Add Movie page */}
         <Route path="/addmovie">

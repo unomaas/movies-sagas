@@ -31,7 +31,7 @@ import './fonts/OpenDyslexia/opendyslexic-bolditalic-webfont.woff2'
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('ADD_MOVIE', addMovie);
-  yield takeEvery('FETCH_MOVIE_DETAIL', movieDetails);
+  yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie);
   // yield takeEvery('SET_MOVIE_DETAIL', editMovie)
 } // End rootSaga
 
@@ -64,8 +64,8 @@ function* addMovie(action) {
   } // End catch
 } // End addMovie
 
-function* movieDetails(action) {
-  console.log('In movieDetails Saga, action:', action.payload);
+function* fetchSingleMovie(action) {
+  console.log('In fetchSingleMovie Saga, action:', action.payload.title);
   // ⬇ Declaring variable to hold movieId:
   const movieId = action.payload.id;
   console.log('movieId is:', movieId);
@@ -73,14 +73,14 @@ function* movieDetails(action) {
     // ⬇ Sending movieId to server:
     const response = yield axios.get(`/api/movie/${movieId}`);
     // ⬇ Logging the response:
-    console.log('In axios.get, movies:', response.data);
+    console.log('In fetchSingleMovie axios.get, response:', response.data);
     // ⬇ Sending the response to our reducer to hold:
     yield put({ type: 'SET_MOVIE_DETAIL', payload: response.data })
   } // End try
   catch (error) {
-    console.error('In movieDetails Saga, error:', error);
+    console.error('In fetchSingleMovie Saga, error:', error);
   } // End catch
-} // End editMovie
+} // End fetchSingleMovie
 //#endregion ⬆⬆ All Saga functions above. 
 
 
