@@ -1,6 +1,7 @@
 //#region ⬇⬇ Document setup below: 
 // ⬇ File setup: 
 import './MovieList.css'
+import MovieItem from '../MovieItem/MovieItem';
 // ⬇ Dependent functionality:
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,14 +19,6 @@ function MovieList() {
   //#endregion ⬆⬆ All state variables above. 
 
 
-  //#region ⬇⬇ Event handlers below:
-  const handleDetail = () => {
-    console.log('In handleDetail');
-
-  } // End handleDetail
-  //#endregion ⬆⬆ Event handles above. 
-
-
   return (
     <main>
 
@@ -33,26 +26,14 @@ function MovieList() {
 
       <section className="movies-list">
         {movies.map(movie => {
-          return (
-            <div className="movies-item" key={movie.id} onClick={handleDetail}>
-
-              <div className="movies-title">
-                <p>{movie.title}</p>
-              </div>
-
-              <img
-                className="movies-image"
-                src={movie.poster}
-                alt={movie.title}
-              />
-
-            </div>
-          );
+          return <MovieItem key={movie.id} movie={movie} />
         })}
       </section>
 
     </main>
-  );
-}
+  ) // End return
+} // End MovieList
+
 
 export default MovieList;
+
