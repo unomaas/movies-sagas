@@ -47,19 +47,19 @@ VALUES
 -- starter genres
 INSERT INTO "genres" ("name")
 VALUES 
-('Adventure'),
-('Animated'),
-('Biographical'),
-('Comedy'),
-('Disaster'),
-('Drama'),
-('Epic'),
-('Fantasy'),
-('Musical'),
-('Romantic'),         --10
-('Science Fiction'),  --11
-('Space-Opera'),      --12
-('Superhero');        --13
+('Adventure '),
+('Animated '),
+('Biographical '),
+('Comedy '),
+('Disaster '),
+('Drama '),
+('Epic '),
+('Fantasy '),
+('Musical '),
+('Romantic '),         --10
+('Science Fiction '),  --11
+('Space-Opera '),      --12
+('Superhero ');        --13
 
 
 -- starter movies and genres data
