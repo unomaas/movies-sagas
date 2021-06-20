@@ -21,9 +21,7 @@ function App() {
         </Route>
 
         {/* Details page */}
-        <Route path="/detail">
-          <MovieDetail />
-        </Route>
+        <Route path="/detail:id" children={<MovieDetail />} />
 
         {/* Add Movie page */}
         <Route path="/addmovie">

@@ -11,8 +11,11 @@ export default function MovieItem({ movie }) {
 
   //#region ⬇⬇ Event handlers below:
   const handleDetail = () => {
-    console.log('In handleDetail, movie ID:', movie.id);
-
+    console.log('In handleDetail, movie title:', movie.title);
+    // ⬇ Dispatch to the detail reducer:
+    dispatch({ type: 'FETCH_MOVIE_DETAIL', payload: movie });
+    // ⬇ Navigate user to detailed view: 
+    history.push('/detail');
   } // End handleDetail
   //#endregion ⬆⬆ Event handles above. 
 
@@ -20,16 +23,16 @@ export default function MovieItem({ movie }) {
   // ⬇ Rendering:
   return (
     <div>
-      <div className="movies-item" key={movie.id} onClick={handleDetail}>
+      <div className="movies-item" key={movie?.id} onClick={handleDetail}>
 
         <div className="movies-title">
-          <p>{movie.title}</p>
+          <p>{movie?.title}</p>
         </div>
 
         <img
           className="movies-image"
-          src={movie.poster}
-          alt={movie.title}
+          src={movie?.poster}
+          alt={movie?.title}
         />
 
       </div>
