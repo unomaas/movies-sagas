@@ -1,5 +1,24 @@
-.movies {
+.movies-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.movies-item {
+  width: 280px;
+  margin: 5px;
+  /* border: 1px solid black; */
+}
+
+.movies-title {
+  /* display: flex;
+  justify-content: center;
+  margin-block-start: 0px; */
+  margin: 0!important;
+  padding: 0!important;
+  height: 65px;
+}
+
+.movies-image {
+  height: 400px;
 }
