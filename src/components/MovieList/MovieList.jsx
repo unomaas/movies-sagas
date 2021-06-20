@@ -20,6 +20,7 @@ function MovieList() {
 
   //#region ⬇⬇ Event handlers below:
   const handleDetail = () => {
+    console.log('In handleDetail');
 
   } // End handleDetail
   //#endregion ⬆⬆ Event handles above. 
@@ -34,14 +35,17 @@ function MovieList() {
         {movies.map(movie => {
           return (
             <div className="movies-item" key={movie.id} onClick={handleDetail}>
+
               <div className="movies-title">
                 <p>{movie.title}</p>
               </div>
+
               <img
                 className="movies-image"
                 src={movie.poster}
                 alt={movie.title}
               />
+
             </div>
           );
         })}
