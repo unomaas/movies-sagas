@@ -10,9 +10,7 @@ Duration: 3 Day Sprint
 
 This is a web based application that uses React to interact with a virtual server and database.  The objective was to get hands-on experience working with React to build a full-stack app using CRUD methodology and Router capability for a Detailed View.  
 
-The app functionality will take the user through a simple "feedback" process, asking them to leave feedback on how they're feeling, how they're understanding content, how well supported they feel, and if there's any comments.  
-
-At the end of the feedback process, the app will review their choices displayed on the DOM, and be able to submit their feedback to the database.  After submission, they may leave new feedback again, if desired.  
+The Movies Saga will allow a user to create a list of movies they like, by entering a name, description, selecting a category, and uploading an image. The users will then be able to edit these details by clicking on a movie in the list and using the edit button to save and update.
 
 
 

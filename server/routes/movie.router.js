@@ -33,7 +33,8 @@ router.get('/:id', (req, res) => {
   console.log('In api/movie/:id GET');
   // ⬇ Declaring SQL commands to send to DB: 
   const query = `
-    SELECT ARRAY_AGG ("genres".name), "movies".* FROM "movies"
+    SELECT ARRAY_AGG ("genres".name), "movies".* 
+    FROM "movies"
     JOIN "movies_genres" ON "movies_genres".movie_id = "movies".id
     JOIN "genres" ON "movies_genres".genre_id = "genres".id
     WHERE "movies".id = $1
