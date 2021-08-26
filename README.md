@@ -1,4 +1,4 @@
-#React Movie Saga App
+# React Movie Saga App
 
 Thanks for looking into my weekend project, the React movie saga web app! 
 
